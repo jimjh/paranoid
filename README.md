@@ -1,2 +1,1 @@
-# paranoid
-Pragmatic Contracts for Python
+README.rst
