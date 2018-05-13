@@ -25,10 +25,15 @@ __missing = object()  #: unique object to denote missing value
 def zip_params(fn, args, kwargs):
     """Takes a function call and label each argument with its name in the argspec.
 
-        >>> def foo(arg0, arg1, k1=u'🛥', *args):
+        >>> def foo(arg0, arg1, k1='car', *args):
         ...     pass
-        >>> zip_params(foo, ('val0', 1, 'leftover'), {'k1': u'boat'})
-        Parameters(arg0='val0', arg1=1, k1=u'boat', args=())
+        >>> params = zip_params(foo, ('val0', 1, 'leftover'), {'k1': 'boat'})
+        >>> params.arg0
+        'val0'
+        >>> params.arg1
+        1
+        >>> params.k1
+        'boat'
 
     :param fn: function/method
     :param args: list of positional arguments
@@ -40,7 +45,8 @@ def zip_params(fn, args, kwargs):
 
     # create a parameter dict with default values
     parameters = {arg_name: __missing for arg_name in defn_args}
-    parameters.update(zip(reversed(defn_args), reversed(defaults)))
+    if defaults is not None:
+        parameters.update(zip(reversed(defn_args), reversed(defaults)))
 
     # set given positional args, vargs, kwargs
     parameters.update(zip(defn_args, args))

@@ -34,23 +34,24 @@ class Contract(object):
         self.__enabled = False
 
     def enabled(self):
-        return self.__enabled and not __debug__
+        return self.__enabled and __debug__
 
     def precondition(self, conditions):
         @wrapt.decorator(enabled=self.enabled)
         def decorator(fn, inst, args, kwargs):
-            named_args = zip_params(fn, args, kwargs)
+            params = zip_params(fn, args, kwargs)
             for description, predicate in conditions:
-                assert predicate(named_args), description
+                assert predicate(params), description
             return fn(*args, **kwargs)
         return decorator
 
     def postcondition(self, conditions):
         @wrapt.decorator(enabled=self.enabled)
         def decorator(fn, inst, args, kwargs):
+            params = zip_params(fn, args, kwargs)
             ret = fn(*args, **kwargs)
             for description, predicate in conditions:
-                assert predicate(ret), description
+                assert predicate(params, ret), description
             return ret
         return decorator
 
