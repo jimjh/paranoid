@@ -55,7 +55,7 @@ Run ``tox`` outside any virtualenv.
 Appendix
 --------
 
-Inspired by `deadpixi/contracts`_ and `Hillel Wayne`_.
+Inspired by `c0`_, `deadpixi/contracts`_ and `Hillel Wayne`_.
 
 Differences:
 
@@ -70,3 +70,4 @@ I need the latter 2 behaviors because I work with a monolith.
 .. _`Hillel Wayne`: https://us.pycon.org/2018/schedule/presentation/130/
 .. _`six`: https://pythonhosted.org/six/
 .. _`wrapt`: https://wrapt.readthedocs.io/
+.. _`c0`: http://c0.typesafety.net/
