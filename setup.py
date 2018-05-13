@@ -16,7 +16,7 @@ setup(
     version='0.1.0',
     description='Pragmatic Contracts for Python',
     long_description=long_description,
-    long_description_content_type='text/x-rst',
+    long_description_content_type='text/x-rst; charset=UTF-8',
     url='https://github.com/jimjh/paranoid',
     author='James Lim',
     author_email='jim@jimjh.com',

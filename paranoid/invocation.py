@@ -40,7 +40,8 @@ def zip_params(fn, args, kwargs):
     missing = set(k for k, v in six.iteritems(parameters) if v is __missing)
     if len(missing) > 0:
         missing_names = ', '.join(missing)
-        raise TypeError('{}() requires positional argument(s): {}'.format(fn.__name__, missing_names))
+        error = '{}() requires positional argument(s): {}'.format(fn.__name__, missing_names)
+        raise TypeError(error)
 
     return namedtuple('Parameters', parameters.keys())(**parameters)
 
