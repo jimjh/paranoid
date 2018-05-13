@@ -23,6 +23,7 @@ Pragmatic Contracts for Python.
         """docs."""
         return u'x'
 
-Inspired by `deadpixi/contracts`_.
+Inspired by `deadpixi/contracts`_ and `Hillel Wayne`_.
 
 .. _`deadpixi/contracts`: https://github.com/deadpixi/contracts
+.. _`Hillel Wayne`: https://us.pycon.org/2018/schedule/presentation/130/

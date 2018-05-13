@@ -19,6 +19,7 @@ setup(
     long_description_content_type='text/x-rst',
     url='https://github.com/jimjh/paranoid',
     author='James Lim',
+    author_email='jim@jimjh.com',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
