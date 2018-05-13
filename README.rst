@@ -19,8 +19,8 @@ Then, add preconditions and postconditions by defining predicates on each argume
 the return value.
 
 >>> @contract.precondition([
-...     ("`x` must be a positive integer", lambda p: isinstance(p.x, int) and p.x > 0),
-...     ("`y` must be a positive float", lambda p: isinstance(p.y, float) and p.y > 0)
+...     ("`x` must be an integer", lambda p: isinstance(p.x, int)),
+...     ("`y` must be a float", lambda p: isinstance(p.y, float))
 ... ])
 ... @contract.postcondition([
 ...     ("product must greater than either operand", lambda p, r: r > p.x and r > p.y)
@@ -30,8 +30,10 @@ the return value.
 
 The preconditions and postconditions will be applied when the function is invoked.
 
->>> multiply(10, 6.4)
-60
+>>> multiply(10, 6)
+Traceback (most recent call last):
+    ...
+AssertionError: `y` must be a float
 
 To disable contract assertions in production, use ``contract.disable()`` or ``python -O``.
 
