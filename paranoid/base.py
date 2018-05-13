@@ -1,18 +1,20 @@
 # ~*~ encoding: utf-8 ~*~
 """Contracts for functions."""
+# import built-in
 from __future__ import absolute_import, print_function
 
+# import 3rd-party
 import wrapt
 
+# import package local
 from .invocation import zip_params
 
-# TODO docs, mypy
+# TODO more docs, mypy
 # TODO automatically check types from annotations
 
 
 class Contract(object):
     """
-
     Assertions are disabled by default, and are also disabled when python is started
     with optimization flags _e.g._ ``python -O``.
     """

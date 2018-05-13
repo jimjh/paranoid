@@ -2,26 +2,46 @@
 paranoid
 ========
 
+.. image:: https://travis-ci.org/jimjh/paranoid.svg?branch=master
+    :target: https://travis-ci.org/jimjh/paranoid
+
 Pragmatic Contracts for Python.
 
-.. code-block:: python
+Basic Usage
+-----------
 
-    from paranoid import contract
-    import six
+Import and enable ``paranoid.contract``:
 
-    contract.enable()
-    # Use ``contract.disable()`` or ``python -O`` to disable
+    >>> from paranoid import contract
+    >>> contract.enable()
 
-    @contract.precondition([
-        ("`x` must be an integer", lambda params: isinstance(params.x, int)),
-        ("`y` must be an float", lambda params: isinstance(params.y, float))
-    ])
-    @contract.postcondition([
-        ("return value must be a unicode string", lambda s: isinstance(s, six.text_type))
-    ])
-    def my_function(x, y, z='a', *args, **kwargs):
-        """docs."""
-        return u'x'
+Then, add preconditions and postconditions by defining predicates on each argument and on
+the return value.
+
+    >>> @contract.precondition([
+    ...     ("`x` must be an integer", lambda params: isinstance(params.x, int)),
+    ...     ("`y` must be an float", lambda params: isinstance(params.y, float))
+    ... ])
+    ... @contract.postcondition([
+    ...     ("return value must be a binary string", lambda ret: isinstance(ret, bytes))
+    ... ])
+    ... def my_function(x, y, z='a', *args, **kwargs):
+    ...     return b'\xf0\x9f\x9a\x80'
+
+The preconditions and postconditions will be applied when the function is invoked.
+
+    >>> my_function(10, 6.4)
+    '\xf0\x9f\x9a\x80'
+
+To disable contract assertions in production, use ``contract.disable()`` or ``python -O``.
+
+Developing
+----------
+
+Testing
+-------
+
+Run ``tox`` outside any virtualenv.
 
 Inspired by `deadpixi/contracts`_ and `Hillel Wayne`_.
 

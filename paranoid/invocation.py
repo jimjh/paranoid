@@ -1,12 +1,15 @@
 # ~*~ encoding: utf-8 ~*~
 """inspect - py2/3-compatible inspection"""
+# import built-in
 from __future__ import absolute_import, print_function
 from collections import namedtuple
 
+# import 3rd-party
 import six
 from six.moves import zip
 
 try:
+    # try to use getfullargspec from python3
     from inspect import getfullargspec
 except ImportError:
     from inspect import getargspec
@@ -20,8 +23,19 @@ __missing = object()  #: unique object to denote missing value
 
 
 def zip_params(fn, args, kwargs):
+    """Takes a function call and label each argument with its name in the argspec.
 
-    # implement python2 first; figure out python3 later
+        >>> def foo(arg0, arg1, k1=u'🛥', *args):
+        ...     pass
+        >>> zip_params(foo, ('val0', 1, 'leftover'), {'k1': u'boat'})
+        Parameters(arg0='val0', arg1=1, k1=u'boat', args=())
+
+    :param fn: function/method
+    :param args: list of positional arguments
+    :param kwargs: dict of keyword arguments
+    """
+    # TODO make this work with python3
+
     defn_args, defn_vargs, defn_kwargs, defaults, _, _, _ = getfullargspec(fn)
 
     # create a parameter dict with default values
