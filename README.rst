@@ -52,8 +52,21 @@ Testing
 
 Run ``tox`` outside any virtualenv.
 
+Appendix
+--------
+
 Inspired by `deadpixi/contracts`_ and `Hillel Wayne`_.
+
+Differences:
+
+- Provides a shorter stack trace on failure, since each decorator takes multiple conditions, instead of wrapping the target function once per condition.
+- Uses `wrapt`_ instead of functools for decorators.
+- Provides enable/disable methods, in addition to using ``__debug__``, so you don't have to disable assertions across the entire virtualenv.
+- Allows you to instantiate isolated contracts that can be enabled/disabled independently.
+
+I need the latter 2 behaviors because I work with a monolith.
 
 .. _`deadpixi/contracts`: https://github.com/deadpixi/contracts
 .. _`Hillel Wayne`: https://us.pycon.org/2018/schedule/presentation/130/
 .. _`six`: https://pythonhosted.org/six/
+.. _`wrapt`: https://wrapt.readthedocs.io/
