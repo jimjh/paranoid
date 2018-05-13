@@ -45,7 +45,7 @@ Developing
 
   .. code-block:: console
 
-      $ py.test --doctest-glob='*.rst' --doctest-mod
+      $ pytest --doctest-glob='*.rst' --doctest-mod
 
 Testing
 -------
